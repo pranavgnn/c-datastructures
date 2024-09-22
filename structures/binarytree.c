@@ -1,17 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node {
-    int data;
-    struct Node *leftChild, *rightChild;
-} Node;
+#include "binarytree.h"
 
-Node newNode(int data) {
-    return (Node) {data, NULL, NULL};
+BinaryTree newBinaryTree() {
+    return (BinaryTree) {NULL};
 }
 
-void insertAt(Node **root, int item, char direction[]) {
-    Node *temp = *root;
+void insertIntoTreeAt(BinaryTree *tree, int item, char direction[]) {
+    Node *temp = tree->root;
     int i;
     char x;
 
@@ -21,7 +18,7 @@ void insertAt(Node **root, int item, char direction[]) {
     nodeToInsert->rightChild = NULL;
 
     if (temp == NULL) {
-        *root = nodeToInsert;
+        tree->root = nodeToInsert;
         return;
     }
 
@@ -56,36 +53,4 @@ void postorderTraversalRecursive(Node *root) {
     postorderTraversalRecursive(root->leftChild);
     postorderTraversalRecursive(root->rightChild);
     printf("%d ", root->data);
-}
-
-/* INPUT TREE:
-         1
-        / \
-       2  3
-     / \   \
-    4  5   6
-*/
-
-int main() {
-    Node *root = NULL;
-    insertAt(&root, 1, "");
-    insertAt(&root, 2, "L");
-    insertAt(&root, 3, "R");
-    insertAt(&root, 4, "LL");
-    insertAt(&root, 5, "LR");
-    insertAt(&root, 6, "RR");
-
-    printf("Preorder: ");
-    preorderTraversalRecursive(root);
-    printf("\n");
-
-    printf("Inorder: ");
-    inorderTraversalRecursive(root);
-    printf("\n");
-
-    printf("Postorder: ");
-    postorderTraversalRecursive(root);
-    printf("\n");
-
-    return 0;
 }
