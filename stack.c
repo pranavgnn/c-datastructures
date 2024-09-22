@@ -28,14 +28,14 @@ int isEmpty(Stack s) {
 
 void push(Stack* s, int item) {
     if (isFull(*s))
-        printf("Stack overflow");
+        printf("Stack overflow\n");
     else
         s->items[++(s->top)] = item;
 }
 
 int pop(Stack* s) {
     if (isEmpty(*s))
-        printf("Stack underflow");
+        printf("Stack underflow\n");
     else
         return s->items[(s->top)--];
 }

@@ -30,14 +30,14 @@ int isEmpty(Queue q) {
 
 void enqueue(Queue *q, int item) {
     if (isFull(*q))
-        printf("Queue full");
+        printf("Queue overflow\n");
     else
         q->items[++(q->rear)] = item;
 }
 
 int dequeue(Queue *q) {
     if (isEmpty(*q))
-        printf("Queue empty");
+        printf("Queue underflow\n");
     else
         return q->items[(q->front)++];
 }
